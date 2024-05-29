@@ -3,8 +3,10 @@ import random
 
 class Enemy:
     enemies = ['vilager', 'cave man', 'cat', 'faker', 'X']
+
     def __init__(self, name):
         self.name = name
+        self.copy = ''
         if name == 'vilager':
             self.play_style = 'npc'
             self.damage = 2
@@ -25,8 +27,9 @@ class Enemy:
             self.play_style = 'scam'
             self.damage = 20
             self.hp = 25
+
     def get_symbol(self):
-        if(self.play_style == 'npc'):
+        if self.play_style == 'npc':
             random_number = random.randint(1, 3)
             if random_number == 1:
                 return "Rock"
@@ -35,19 +38,25 @@ class Enemy:
             else:
                 return "Scissors"
 
-        elif(self.play_style == 'rock'):
+        elif self.play_style == 'rock':
             random_number = random.randint(1, 10)
-            if random_number<=6:
+            if random_number <= 6:
                 return "Rock"
             elif random_number <= 8:
                 return "Paper"
             else:
                 return "Scissors"
 
-        elif (self.play_style == 'faker'):
+        elif self.play_style == 'copy cat':
+            if self.copy == '':
+                return "Dodge"
+            else:
+                return self.copy
+
+        elif self.play_style == 'faker':
             random_number = random.randint(1, 3)
             random_number_dodge = random.randint(1, 100)
-            if(random_number_dodge <=10):
+            if random_number_dodge <= 10:
                 return "Dodge"
             if random_number == 1:
                 return "Rock"
