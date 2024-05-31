@@ -7,6 +7,7 @@ class Enemy:
     def __init__(self, name):
         self.name = name
         self.copy = ''
+        self.current_player_move = ''
         if name == 'vilager':
             self.play_style = 'npc'
             self.damage = 2
@@ -53,11 +54,28 @@ class Enemy:
             else:
                 return self.copy
 
-        elif self.play_style == 'faker':
+        elif self.play_style == 'fake':
             random_number = random.randint(1, 3)
             random_number_dodge = random.randint(1, 100)
             if random_number_dodge <= 10:
                 return "Dodge"
+            if random_number == 1:
+                return "Rock"
+            elif random_number == 2:
+                return "Paper"
+            else:
+                return "Scissors"
+
+        elif self.play_style == 'scam':
+            random_number = random.randint(1, 3)
+            random_number_scam = random.randint(1, 100)
+            if random_number_scam <= 10:
+                if self.current_player_move == "Rock":
+                    return "Paper"
+                elif self.current_player_move == "Paper":
+                    return "Scissors"
+                else:
+                    return "Rock"
             if random_number == 1:
                 return "Rock"
             elif random_number == 2:

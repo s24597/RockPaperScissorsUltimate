@@ -81,6 +81,7 @@ def match(player, enemy):
             if player_symbol == 'Rock' or player_symbol == 'Paper' or player_symbol == 'Scissors':
                 incorrect_symbol = False
 
+        enemy.current_player_move = player_symbol
         enemy_symbol = enemy.get_symbol()
         enemy.copy = player_symbol
         winner = establish_winner(player_symbol, enemy_symbol)
@@ -126,9 +127,8 @@ def game():
         player.defeated_enemies = Enemy.retrieve_defeated_enemies(int(save.split(',')[1]))
     while len(player.defeated_enemies) < len(Enemy.enemies):
         enemy_name = Enemy.enemies[len(player.defeated_enemies)]
-        print(enemy_name)
+        print("You are fighting with: " + enemy_name)
         enemy = Enemy(enemy_name)
-        print(enemy.hp)
         looser = match(player, enemy)
         if isinstance(looser, Player):
             player_lost()
